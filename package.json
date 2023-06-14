@@ -1,0 +1,14 @@
+{
+  "name": "com.projects.blockchain.level_1",
+  "version": "1.0.0",
+  "description": "Blockchain fundamentels",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Blockchain"
+  ],
+  "author": "Bharath Kumar",
+  "license": "ISC"
+}
