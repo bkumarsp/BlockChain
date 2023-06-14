@@ -8,6 +8,10 @@ class Block {
         this.prevBlockHash = "";
     }
 
+    // Getters and Setters
+
+    getPrevBlockHash = () => {return this.prevBlockHash;}
+
     getTransactions = () => { return this.transactions };
 
     setTransactions = (transaction) => { this.transactions = transaction; }
