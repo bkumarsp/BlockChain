@@ -1,5 +1,9 @@
 import Block from "./components/Block";
+import Transaction from "./components/Transaction";
 import sha256Algorithm from "./Secrets/sha256Algorithm";
+
+
+/////// Main Class of the Project /////
 
 class Blockchain {
     constructor() {
@@ -10,6 +14,11 @@ class Blockchain {
     // Create a initial Block in the chain.
     createGenesisBlock() {
         return new Block();
+    }
+
+    createNewTransaction(sender, recepient, amount){
+        let newTransaction = new Transaction(sender, recepient, amount);
+        this.pendingTransactions.push(newTransaction);
     }
 
     // Retrieve the last Block from the chain of blocks.
