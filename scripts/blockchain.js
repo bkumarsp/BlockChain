@@ -1,6 +1,6 @@
-import Block from "./components/Block";
-import Transaction from "./components/Transaction";
-import sha256Algorithm from "./Secrets/sha256Algorithm";
+const Block = require("./components/Block");
+const Transaction = require("./components/Transaction")
+const sha256Algorithm = require("./Secrets/sha256Algorithm")
 
 
 /////// Main Class of the Project /////
@@ -15,9 +15,32 @@ class Blockchain {
     createGenesisBlock() {
         return new Block();
     }
+    
+    createNewBlock(){
+        let index = this.chain.length + 1; 
+        let transactions = this.pendingTransactions;
+        let prevBlockHash = this.getLastBlock().getPrevBlockHash();
+        let currentBlockHash = this.generateCustomHash();
 
+        // Create new block
+        let newBlock =  new Block();
+        newBlock.index = index;
+        newBlock.timeStamp = Date.now();
+        newBlock.transactions = transactions;
+        newBlock.nonce = currentBlockHash.nonce;
+        newBlock.hash = currentBlockHash.hash;
+        newBlock.prevBlockHash = prevBlockHash;
+
+        //Clear pending transaction;
+        this.clearPendingTransaction();
+        this.addBlockToChain(newBlock);
+
+        return newBlock;
+    }
+
+    //Transaction
     createNewTransaction(sender, recepient, amount){
-        let newTransaction = new Transaction(sender, recepient, amount);
+        let newTransaction = Transaction(sender, recepient, amount);
         this.pendingTransactions.push(newTransaction);
     }
 
@@ -41,22 +64,6 @@ class Blockchain {
         let prevBlock = this.getLastBlock();
         let timeStamp = Date.now()
         return new sha256Algorithm(prevBlock.getPrevBlockHash(), timeStamp, this.pendingTransactions).generateHash()
-    }
-
-    createNewBlock(){
-        let index = this.chain.length + 1; 
-        let transactions = this.pendingTransactions;
-        let prevBlockHash = this.getLastBlock().getPrevBlockHash();
-        let currentBlockHash = this.generateCustomHash();
-
-        // Create new block
-        let newBlock =  new Block(index, transactions, prevBlockHash, currentBlockHash);
-
-        //Clear pending transaction;
-        this.clearPendingTransaction();
-        this.addBlockToChain(newBlock);
-
-        return newBlock;
     }
 
 

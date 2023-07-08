@@ -21,4 +21,4 @@ class sha256Algorithm {
     }
 }
 
-export default sha256Algorithm;
+module.exports=sha256Algorithm;

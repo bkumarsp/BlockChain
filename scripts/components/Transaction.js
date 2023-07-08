@@ -8,4 +8,4 @@ const Transaction = (sender, recepient, amount) =>{
     }
 }
 
-export default Transaction;
+module.exports=Transaction;

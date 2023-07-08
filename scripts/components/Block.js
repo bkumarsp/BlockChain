@@ -8,15 +8,6 @@ class Block {
         this.prevBlockHash = "";
     }
 
-    constructor(index, transactions, prevBlockHash, currentBlockHash){
-        this.index = index;
-        this.timeStamp = Date.now();
-        this.transactions = transactions;
-        this.nonce = currentBlockHash.nonce;
-        this.hash = currentBlockHash.hash;
-        this.prevBlockHash = prevBlockHash;
-    }
-
     // Getters and Setters
 
     getPrevBlockHash = () => {return this.prevBlockHash;}
@@ -26,4 +17,4 @@ class Block {
     setTransactions = (transaction) => { this.transactions = transaction; }
 }
 
-export default Block;
+module.exports=Block;
